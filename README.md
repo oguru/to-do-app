@@ -2,6 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
+## App Requirements
+
+Please create a TODO List application, in React, which users can use to add, view and delete TODO items (called “TODOs”). Example TODOs in the list might be:
+
+- Wash the car
+
+- Mow the lawn
+
+- Do the washing-up
+
+
+When starting the application, the list should be empty. There should be a form for adding new TODOs, somewhere to view all TODOs, and a way to tick off (i.e. remove) TODOs.
+
+This project is intended to be a way for you to demonstrate your coding abilities, and your ability to create user interfaces. The code and the UI do not need to be complicated, and this should take under 3 hours. If you can, please use TypeScript. Similarly, if you can, use Redux to store the TODOs.
+
+
+If you want to, you can use Create React App to set up your application. For this project, we will be primarily looking at and discussing the React components that you create, rather than the configuration files (i.e. Webpack or similar).
+
 ## Available Scripts
 
 In the project directory, you can run:
