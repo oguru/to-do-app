@@ -1,30 +1,33 @@
-import React from "react";
+import {deleteToDoItem, toggleToDoItem} from "../../store/toDoItemsSlice";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {RootState} from "../../store/store";
 import ToDoItem from "../../components/ToDoItem/ToDoItem";
+import {createRef} from "react";
+import styles from "./ToDoList.module.scss";
 
 const ToDoList = () => {
-    const toDoItems = [{
-        id: 1,
-        title: "Mow the lawn",
-        completed: true,
-        onToggle: () => {},
-        onRemove: () => {}
-    }, {
-        id: 2,
-        title: "Clean up the kitchen",
-        completed: false,
-        onToggle: () => {},
-        onRemove: () => {}
-    }];
+    const toDoItems = useAppSelector((state: RootState) => state.toDoItems);
+    const containerRef = createRef<HTMLUListElement>();
+    const dispatch = useAppDispatch();
+
+    const toggleItem = (id: number) => {
+        dispatch(toggleToDoItem(id));
+    };
+
+    const deleteItem = (id: number) => {
+        dispatch(deleteToDoItem(id));
+    };
+
     return (
-        <ul>
-            {toDoItems.map(({id, title, completed, onToggle, onRemove}) => (
+        <ul ref={containerRef} className={styles.toDoList}>
+            {toDoItems.map(({id, title, completed}) => (
                 <ToDoItem
                     key={id}
                     id={id}
-                    title={title}
                     completed={completed}
-                    onToggle={onToggle}
-                    onRemove={onRemove}
+                    title={title}
+                    onRemove={deleteItem}
+                    onToggle={toggleItem}
                 />
             ))}
         </ul>

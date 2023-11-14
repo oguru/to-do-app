@@ -1,0 +1,10 @@
+@import "../../style-global/variables.scss";
+@import "../../style-global/mixins.scss";
+
+.toDoList {
+    padding: 0;
+    margin: $base-spacing auto;
+    @include sm-width;
+    @include md-width;
+    @include lg-width;
+}

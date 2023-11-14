@@ -1,27 +1,24 @@
-import React from "react";
-import logo from "./logo.svg";
-import styles from "./App.module.scss";
-import ToDoItem from "./components/ToDoItem/ToDoItem";
+import {Route, Routes, Link, BrowserRouter as Router} from "react-router-dom";
 import AddToDo from "./pages/AddToDo/AddToDo";
 import ToDoList from "./pages/ToDoList/ToDoList";
-import {Route, Routes, Link, BrowserRouter as Router} from "react-router-dom";
+import styles from "./App.module.scss";
 
 const App = () => {
     const routes = [
         {
             path: "/",
-            name: "list",
+            name: "My List",
             component: <ToDoList />
         },
         {
             path: "/create",
-            name: "create",
+            name: "Add New",
             component: <AddToDo />
         }
     ];
 
     return (
-        <div className="App">
+        <>
             <Router>
                 <header className={styles.header}>
                     <h1>My To-Do List</h1>
@@ -48,7 +45,7 @@ const App = () => {
                     })}
                 </Routes>
             </Router>
-        </div>
+        </>
     );
 };
 

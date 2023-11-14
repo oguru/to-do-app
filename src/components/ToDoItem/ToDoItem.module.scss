@@ -1,45 +1,85 @@
-// import variables
-@import "../../variables";
+@import "../../style-global/variables.scss";
+@import "../../style-global/mixins.scss";
 
 .toDoItem {
-    display: flex;
+    @include hover-item;
     align-items: center;
-    width: 100%;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-    padding: $base-spacing / 4;
-    margin: $base-spacing / 2;
     border-radius: $border-radius;
-    transform: translateY(0px);
-    transition-duration: 0.25s;
-    &:hover {
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-        transform: translateY(-1px);
+    display: flex;
+    justify-content: space-between;
+    margin: $base-spacing/2 0;
+    padding: $base-spacing/4;
+    width: 100%;
+
+    p {
+        display: inline-block;
+        flex-grow: 1;
+        margin: 0;
+        max-width: 80%;
+        padding: 0;
+
+        @media screen and (min-width: $lg-width) {
+            max-width: 84%;
+        }
+    }
+
+    input, button {
+        border-radius: $border-radius;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+    }
+
+    input[type=checkbox] {
+        margin: 0 $base-spacing/2 0 0;
+
+        &:focus-visible { 
+            border-radius: $border-radius;
+            border: 1px solid $grey;
+        }
     }
 
     input[type=checkbox]:checked {
-        background: #f00;
+        accent-color: $green;
         color: #fff;
-        /* background-image: url("checked.png"); */
+
+        &:hover {
+            filter: brightness(1.5);
+        }
       }
 
     button {
-        border-radius: $border-radius;
-        border: 1px solid $grey-border;
-        width: 24px;
-        height: 24px;
-        margin-right: 6px;
-        background-color: red;
-        color: white;
+        background-color: $grey;
+        border: none;
+        margin-left: $base-spacing/2;
+        padding: 0;
+        position: relative;
+
+        &:hover, &:focus {
+            background-color: $red;
+        }
+
+        &:before, &:after {
+            background-color:  white;
+            content: ' ';
+            height: 17px;
+            left: 43%;
+            position: absolute;
+            top: 10%;
+            width: 3px;
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
     }
 }
 
 .completed {
+    color: $red;
     text-decoration: line-through;
-    color: red;
 }
-
-.title {
-    flex-grow: 1;
-    margin-right: 8px;
-}
-

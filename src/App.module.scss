@@ -1,47 +1,39 @@
-@import "variables";
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
+@import "./style-global/variables.scss";
+@import "./style-global/mixins.scss";
 
 .header {
+  align-items: center;
+  box-shadow: $box-shadow-sm;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 
-  a {
-    display:inline-block;
-    margin: $base-spacing;
+  h1 {
+    background-color: $primary-color;
+    box-shadow: $box-shadow-raised;
+    color: white;
+    margin: 0;
     padding: $base-spacing;
+    text-align: center;
+    width: 100vw;
+  }
+
+  a {
+    @include hover-item;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-std;
+    color: black;
+    display:inline-block;
+    font-weight: 600;
+    margin: $base-spacing;
+    padding: $base-spacing/2 $base-spacing;
+    text-align: center;
     text-decoration: none;
     text-transform: capitalize;
-  }
-}
+    width: 110px;
 
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
+    &:focus { 
+      outline: 1px solid $grey;
+    }
   }
 }

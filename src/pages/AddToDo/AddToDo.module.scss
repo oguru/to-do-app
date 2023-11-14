@@ -1,0 +1,55 @@
+@import "../../style-global/variables.scss";
+@import "../../style-global/mixins.scss";
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin: $base-spacing auto; 
+
+    input {
+        @include lg-width;
+        @include md-width;
+        @include sm-width;
+        border-radius: $border-radius 0 0 $border-radius;
+        border: none;
+        box-shadow: $box-shadow-std;
+        padding: $base-spacing/3 + $base-spacing/16;
+
+        &:focus { 
+            border: 1px solid $grey;
+            outline: none;
+            padding: $base-spacing/3;
+        }
+    }
+
+    button {
+        background-color: $green;
+        border-radius: 0 $border-radius $border-radius 0;
+        border: none;
+        box-shadow: $box-shadow-std;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        transform: none;
+        transition-duration: $transition-duration;
+        width: 50px;
+
+        &:focus { 
+            border: 1px solid $green-dark;
+            outline: none;
+            transform: none;
+        }
+
+        &:hover {
+            background-color: $green-med;
+        }
+        
+        &:disabled {
+            background-color: $grey;
+            box-shadow: none;
+            color: black;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+}

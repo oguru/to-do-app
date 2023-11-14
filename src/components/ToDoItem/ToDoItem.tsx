@@ -1,8 +1,6 @@
-// single to do item
-import React from "react";
 import styles from "./ToDoItem.module.scss";
 
-interface ToDoItemProps {
+type ToDoItemProps = {
     id: number;
     title: string;
     completed: boolean;
@@ -10,23 +8,26 @@ interface ToDoItemProps {
     onRemove: (id: number) => void;
 }
 
-const ToDoItem: React.FC<ToDoItemProps> = ({
+const ToDoItem = ({
     id,
     title,
     completed,
     onToggle,
     onRemove
-}) => {
+}: ToDoItemProps) => {
 
     return (
         <li className={styles.toDoItem}>
             <input
                 type="checkbox"
                 checked={completed}
+                aria-checked
                 onChange={() => onToggle(id)}
             />
-            <span className={`${styles.title} ${completed && styles.completed}`}>{title}</span>
-            <button onClick={() => onRemove(id)}>X</button>
+            <p className={`${styles.title} ${completed && styles.completed}`}>
+                {title}
+            </p>
+            <button onClick={() => onRemove(id)}></button>
         </li>
     );
 };

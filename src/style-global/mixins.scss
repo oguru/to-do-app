@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+@mixin hover-item {
+    box-shadow: $box-shadow-std;
+    transition-duration: $transition-duration;
+
+    &:hover {
+        box-shadow: $box-shadow_raised;
+        transform: translateY(-1px);
+    }
+}
+
+@mixin sm-width {
+    width: $sm-width;
+}
+
+@mixin md-width {
+    @media (min-width: 600px) { 
+        width: $md-width;
+     }
+}
+
+@mixin lg-width {
+    @media (min-width: 900px) { 
+        width: $lg-width;
+     }
+}
