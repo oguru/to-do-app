@@ -41,4 +41,4 @@ If I work on this project in the future, possible improvements include:
 5 - Run ```yarn test``` or ```npm run test``` to run tests.
 
 ## Hosted Link
-#### [Link](https://to-do-app.petedev.co.uk/) to live site.
+#### [Link](https://todoapp.petedev.co.uk/) to live site.
