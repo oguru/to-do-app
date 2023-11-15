@@ -8,12 +8,14 @@ const App = () => {
         {
             path: "/",
             name: "My List",
-            component: <ToDoList />
+            component: <ToDoList />,
+            testId: "listPage"
         },
         {
             path: "/create",
             name: "Add New",
-            component: <AddToDo />
+            component: <AddToDo />,
+            testId: "addNew"
         }
     ];
 
@@ -27,6 +29,7 @@ const App = () => {
                             <Link
                                 key={route.name}
                                 to={route.path}
+                                data-testid={route.testId}
                             >
                                 {route.name}
                             </Link>

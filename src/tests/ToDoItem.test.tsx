@@ -1,25 +1,28 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import React from "react";
-import userEvent from "@testing-library/user-event";
-
 import ToDoItem from "../components/ToDoItem/ToDoItem";
 
 describe("ToDoItem tests", () => {
 
     const title = "test";
-    const onToggle = jest.fn((id) => {
-        return id;
-    });
-    const onRemove = jest.fn();
+    const mockOnToggle = jest.fn((id) => id);
+    const mockOnRemove = jest.fn((id) => id);
+    let htmlContainer: HTMLElement;
+    let reRender: (ui: React.ReactElement<
+      any,
+      string | React.JSXElementConstructor<any>
+    >) => void;
 
     beforeEach(() => {
-        render(<ToDoItem
+        const {container, rerender} = render(<ToDoItem
             id={1}
             title={title}
             completed={false}
-            onToggle={onToggle}
-            onRemove={onRemove}
+            onToggle={mockOnToggle}
+            onRemove={mockOnRemove}
         />);
+        htmlContainer = container;
+        reRender = rerender;
     });
 
     it("should render the correct title", () => {
@@ -28,41 +31,33 @@ describe("ToDoItem tests", () => {
         expect(currentTitle).toBeInTheDocument();
     });
 
-    //    it("should toggle the checkbox when it is clicked", () => {
-    //       const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
-
-    //       expect(checkbox.checked).toEqual(false);
-
-    //       fireEvent.click(checkbox);
-
-    //       expect(checkbox.checked).toEqual(true);
-
-    //    });
-
     it("should call onToggle when the checkbox is clicked", () => {
         const checkbox = screen.getByRole("checkbox");
 
         fireEvent.click(checkbox);
 
-        expect(onToggle).toBeCalled();
+        expect(mockOnToggle).toBeCalledWith(1);
     });
 
-    // it should call onRemove when button is clicked
     it("should call onRemove when button is clicked", () => {
         const button = screen.getByRole("button");
 
         fireEvent.click(button);
 
-        expect(onRemove).toBeCalled();
+        expect(mockOnRemove).toBeCalled();
     });
 
-    //    it("should toggle the checkbox when the space key is pressed", () => {
-    //       const user = userEvent.setup();
-    //       const checkbox = screen.getByRole("checkbox");
+    it("should apply the correct classname if an item is checked", () => {
+        expect(htmlContainer.querySelector(".completed")).toBeNull();
 
-    //       user.type(checkbox, "{space}", [{skipClick: true}]);
+        reRender(<ToDoItem
+            id={1}
+            title={title}
+            completed={true}
+            onToggle={mockOnToggle}
+            onRemove={mockOnRemove}
+        />);
 
-    //       expect(onToggle).toBeCalledWith(1);
-    //    });
-
+        expect(htmlContainer.querySelector(".completed")).toBeInTheDocument();
+    });
 });

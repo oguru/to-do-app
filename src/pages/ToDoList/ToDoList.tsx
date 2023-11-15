@@ -2,12 +2,10 @@ import {deleteToDoItem, toggleToDoItem} from "../../store/toDoItemsSlice";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {RootState} from "../../store/store";
 import ToDoItem from "../../components/ToDoItem/ToDoItem";
-import {createRef} from "react";
 import styles from "./ToDoList.module.scss";
 
 const ToDoList = () => {
     const toDoItems = useAppSelector((state: RootState) => state.toDoItems);
-    const containerRef = createRef<HTMLUListElement>();
     const dispatch = useAppDispatch();
 
     const toggleItem = (id: number) => {
@@ -19,7 +17,7 @@ const ToDoList = () => {
     };
 
     return (
-        <ul ref={containerRef} className={styles.toDoList}>
+        <ul className={styles.toDoList}>
             {toDoItems.map(({id, title, completed}) => (
                 <ToDoItem
                     key={id}

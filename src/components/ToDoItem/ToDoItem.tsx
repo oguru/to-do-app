@@ -21,7 +21,7 @@ const ToDoItem = ({
             <input
                 type="checkbox"
                 checked={completed}
-                aria-checked
+                aria-checked={completed}
                 onChange={() => onToggle(id)}
             />
             <p className={`${styles.title} ${completed && styles.completed}`}>
